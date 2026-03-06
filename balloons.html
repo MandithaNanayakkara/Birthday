@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balloon Pop Game 🎈</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .balloon-game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to top, #87CEEB, #E0F6FF);
+            overflow: hidden;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.8);
+            color: #d17a8e;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .game-title {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #d17a8e;
+            z-index: 10;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        .floating-balloon-game {
+            position: absolute;
+            bottom: -200px;
+            width: 120px;
+            cursor: crosshair;
+            transition: transform 0.1s;
+        }
+
+        .floating-balloon-game:hover {
+            transform: scale(1.1);
+        }
+
+        .popped-message {
+            position: absolute;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d17a8e;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            pointer-events: none;
+            animation: floatUpFade 2s forwards;
+            white-space: nowrap;
+            z-index: 50;
+        }
+
+        @keyframes floatUpFade {
+            0% {
+                transform: translateY(0) scale(0.5);
+                opacity: 0;
+            }
+
+            20% {
+                transform: translateY(-20px) scale(1.2);
+                opacity: 1;
+            }
+
+            80% {
+                transform: translateY(-60px) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100px) scale(0.8);
+                opacity: 0;
+            }
+        }
+    </style>
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="countdown.js"></script>
+</head>
+
+<body>
+    <div class="balloon-game-container" id="gameContainer">
+        <a href="index.html" class="back-btn">⬅️ Back to Forest</a>
+        <h1 class="game-title">Pop the Balloons! 🎈</h1>
+    </div>
+
+    <script src="balloons.js"></script>
+    <script src="effects.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebrating Rachi | March 7th</title>
+    <meta name="description" content="A special birthday celebration for Rachi. Join us in counting down to March 7th!">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="countdown.js"></script>
+</head>
+
+<body>
+    <div class="loader-wrapper" id="loader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Music Player -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="assets/happy_birthday.wav" type="audio/wav">
+    </audio>
+    <button id="musicToggleBtn" class="music-toggle-btn">🎵</button>
+
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="welcome-screen">
+        <div class="welcome-background">
+            <img src="assets/bear_balloons.png" class="floating-balloon balloon-1" alt="Balloon">
+            <img src="assets/bear_balloons.png" class="floating-balloon balloon-2" alt="Balloon">
+            <img src="assets/bear_balloons.png" class="floating-balloon balloon-3" alt="Balloon">
+        </div>
+        <div class="welcome-content">
+            <img src="assets/waving_bear.png" alt="Waving Bear" class="waving-bear">
+            <h1 class="welcome-title">🎉 Welcome to Rachi’s Birthday World 🧸</h1>
+            <p class="welcome-text">Today we celebrate the cutest human alive 💖</p>
+            <button id="enterBtn" class="btn primary enter-btn">Enter Rachi Land ✨</button>
+        </div>
+    </div>
+
+    <!-- Cake Cutting Screen -->
+    <div id="cakeScreen" class="welcome-screen hidden" style="display: none;">
+        <div class="welcome-background">
+            <img src="assets/bear_balloons.png" class="floating-balloon balloon-1" alt="Balloon">
+            <img src="assets/bear_balloons.png" class="floating-balloon balloon-2" alt="Balloon">
+        </div>
+        <div class="welcome-content"
+            style="max-width: 800px; display: flex; flex-direction: column; align-items: center; width: 100%; position: relative;">
+            <img src="assets/bear_cake.png" alt="Bear with Cake" class="waving-bear" id="bearCakeImg"
+                style="width: 150px; margin-bottom: 15px; transition: opacity 0.5s;">
+            <img src="assets/bears_cheering.png" id="bearsCheeringImg" alt="Bears Cheering"
+                style="position: absolute; width: 200px; bottom: 0; right: -50px; opacity: 0; transition: all 1s ease-out; transform: translateY(50px); pointer-events: none;">
+            <img src="assets/bears_cheering.png" id="bearsCheeringImgLeft" alt="Bears Cheering"
+                style="position: absolute; width: 200px; bottom: 0; left: -50px; opacity: 0; transition: all 1s ease-out; transform: translateY(50px) scaleX(-1); pointer-events: none;">
+
+            <h2 id="cakeScreenTitle" class="welcome-title"
+                style="font-size: 2.2rem; margin-bottom: 30px; transition: opacity 0.5s;">Rachi, it’s time to cut your
+                birthday cake 🎂</h2>
+
+            <div class="video-container"
+                style="max-width: 650px; margin: 0 auto 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
+                <div class="photo-slideshow" id="introSlideshow">
+                    <img src="assets/rachi_cake_1.png" alt="Rachi Cutting Cake" class="slide active">
+                    <img src="assets/rachi_cake_2.png" alt="Rachi's Wish" class="slide">
+                </div>
+            </div>
+
+            <button id="blowCandlesBtn" class="btn primary enter-btn"
+                style="opacity: 0; transition: opacity 1s; pointer-events: none;">Blow the candles Rachi 🕯️</button>
+        </div>
+    </div>
+
+
+
+    <main class="bear-forest" id="mainPlayground">
+        <!-- Interactive Bear Playground -->
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+
+        <!-- Secret Easter Eggs -->
+        <div class="secret-element secret-moon">🌙</div>
+        <div class="secret-element secret-star">⭐</div>
+        <img src="assets/waving_bear.png" class="secret-element secret-tiny-bear" alt="Tiny Bear">
+
+        <div class="interactive-bear bear-pos-1" data-message="Happy Birthday Rachi 🧸">
+            <img src="assets/bear_1.png" alt="Bear 1">
+            <div class="speech-bubble">Happy Birthday Rachi 🧸</div>
+        </div>
+
+        <div class="interactive-bear bear-pos-2" data-message="You are the cutest hooman">
+            <img src="assets/bear_2.png" alt="Bear 2">
+            <div class="speech-bubble">You are the cutest hooman</div>
+        </div>
+
+        <div class="interactive-bear bear-pos-3" data-message="Someone loves you a lot 💖">
+            <img src="assets/bear_3.png" alt="Bear 3">
+            <div class="speech-bubble">Someone loves you a lot 💖</div>
+        </div>
+
+        <div class="interactive-bear bear-pos-4" data-message="Cake time!! 🎂">
+            <img src="assets/bear_4.png" alt="Bear 4">
+            <div class="speech-bubble">Cake time!! 🎂</div>
+        </div>
+
+        <!-- Interactive Gift Boxes -->
+        <div class="interactive-box box-pos-1" data-message="You unlocked unlimited hugs 🤗">
+            <img src="assets/gift_box.png" alt="Gift Box">
+            <div class="speech-bubble">You unlocked unlimited hugs 🤗</div>
+        </div>
+
+        <div class="interactive-box box-pos-2" data-type="confetti">
+            <img src="assets/gift_box.png" alt="Gift Box">
+            <div class="speech-bubble">Confetti Explosion! 🎊</div>
+        </div>
+
+        <div class="interactive-box box-pos-3" data-message="Rachi has levelled up today 🎉">
+            <img src="assets/gift_box.png" alt="Gift Box">
+            <div class="speech-bubble">Rachi has levelled up today 🎉</div>
+        </div>
+
+        <div class="interactive-box box-pos-4" data-message="You are officially the Birthday Queen 👑">
+            <img src="assets/gift_box.png" alt="Gift Box">
+            <div class="speech-bubble">You are officially the Birthday Queen 👑</div>
+        </div>
+
+        <button id="suspiciousBtn" class="suspicious-btn">Do NOT press this Rachi</button>
+
+        <a href="final.html" id="finalSurpriseBtn" class="btn primary final-surprise-btn"
+            style="display: none; position: absolute; top: 120px; left: 50%; transform: translateX(-50%); z-index: 100; font-size: 1.5rem; background: #c89666; box-shadow: 0 10px 30px rgba(200, 150, 102, 0.6); padding: 20px 40px; border: 3px solid white; animation: floatUp 2s infinite alternate;">Unlock
+            Final Birthday Surprise 🎀</a>
+
+        <div class="action-buttons-wrapper"
+            style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; z-index: 50; width: 90%; max-width: 500px;">
+            <a href="balloons.html" class="btn primary play-action-btn"
+                style="text-align: center; padding: 15px 10px; font-size: 1.1rem;">Play Balloon Pop 🎈</a>
+            <a href="cake.html" class="btn primary play-action-btn"
+                style="text-align: center; padding: 15px 10px; font-size: 1.1rem;">Cake Surprises 🍰</a>
+            <a href="catch_bears.html" class="btn primary play-action-btn"
+                style="text-align: center; padding: 15px 10px; font-size: 1.1rem;">Catch Bears 🧸</a>
+            <a href="wheel.html" class="btn primary play-action-btn"
+                style="text-align: center; padding: 15px 10px; font-size: 1.1rem;">Surprise Wheel 🎡</a>
+        </div>
+    </main>
+
+    <!-- Giant Bear Overlay -->
+    <div id="giantBearOverlay" class="giant-bear-overlay">
+        <img src="assets/waving_bear.png" alt="Giant Bear" class="giant-bear-img">
+        <h2 class="giant-bear-message">I told you not to press it 😂</h2>
+        <button id="closeGiantBearBtn" class="btn primary" style="margin-top: 30px; z-index: 2005;">Exit To
+            Playground</button>
+    </div>
+
+    <footer>
+        <p>Made with all my heart for Rachi &bull; 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="effects.js"></script>
+</body>
+
+</html>

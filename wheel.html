@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bear Surprise Wheel | Celebrating Rachi</title>
+    <meta name="description" content="Spin the Bear Surprise Wheel for fun gifts and messages!">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        .wheel-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffe0e9, #fff0f5, #f5e6e8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #d17a8e;
+            margin-bottom: 20px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .wheel-stage {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            margin-bottom: 40px;
+        }
+
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 8px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            transition: transform 4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* Conic gradient for 6 slices (60 degrees each) */
+            background: conic-gradient(#e69ab0 0deg 60deg,
+                    #d17a8e 60deg 120deg,
+                    #c89666 120deg 180deg,
+                    #e1b382 180deg 240deg,
+                    #ffb5a7 240deg 300deg,
+                    #ffffff 300deg 360deg);
+        }
+
+        /* 
+           Labels for each slice 
+           To position text perfectly, we place elements and rotate them.
+        */
+        .slice-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            height: 20px;
+            margin-top: -10px;
+            /* half height */
+            transform-origin: 0% 50%;
+            font-family: 'Outfit', sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            color: #5a4b40;
+            display: flex;
+            align-items: center;
+            padding-left: 30px;
+            /* push text out towards edge */
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        /* Rotations for each center of a 60-degree slice: 30, 90, 150, 210, 270, 330 */
+        .slice-1 {
+            transform: rotate(30deg);
+            color: #fff;
+        }
+
+        .slice-2 {
+            transform: rotate(90deg);
+            color: #fff;
+        }
+
+        .slice-3 {
+            transform: rotate(150deg);
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .slice-4 {
+            transform: rotate(210deg);
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .slice-5 {
+            transform: rotate(270deg);
+            color: #5a4b40;
+        }
+
+        .slice-6 {
+            transform: rotate(330deg);
+            color: #d17a8e;
+        }
+
+        .pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 50px;
+            background: #ff4b4b;
+            clip-path: polygon(50% 100%, 0 0, 100% 0);
+            z-index: 10;
+            filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
+        }
+
+        .center-peg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            border: 4px solid #d17a8e;
+            z-index: 5;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .spin-btn {
+            background: #e69ab0;
+            color: white;
+            border: none;
+            padding: 15px 50px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(230, 154, 176, 0.4);
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .spin-btn:hover {
+            background: #d17a8e;
+            transform: translateY(-5px);
+        }
+
+        .spin-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .home-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            color: #d17a8e;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 20;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .home-btn:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Modal overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 12, 41, 0.6);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            transform: translateY(50px) scale(0.9);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .modal-text {
+            font-size: 1.3rem;
+            color: #5a4b40;
+            margin-bottom: 30px;
+            min-height: 60px;
+        }
+
+        .close-btn {
+            background: #e69ab0;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .close-btn:hover {
+            background: #d17a8e;
+        }
+
+        .floating-bear {
+            width: 150px;
+            position: absolute;
+            bottom: -50px;
+            right: -20px;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .animated-bear {
+            width: 200px;
+            margin: 0 auto 20px auto;
+            display: none;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+    </style>
+    <script src="countdown.js"></script>
+</head>
+
+<body>
+    <div class="wheel-container">
+        <a href="index.html" class="home-btn">← Back to Forest</a>
+
+        <h1 class="title">Bear Surprise Wheel! 🎡</h1>
+
+        <div class="wheel-stage">
+            <div class="pointer"></div>
+            <div class="wheel" id="wheel">
+                <!-- Placing text so it rotates properly (at 30 + 60*i) -->
+                <div class="slice-label slice-1">Bear Hug</div>
+                <div class="slice-label slice-2">Confetti</div>
+                <div class="slice-label slice-3">Joke</div>
+                <div class="slice-label slice-4">Wish</div>
+                <div class="slice-label slice-5">Secret</div>
+                <div class="slice-label slice-6">Animation</div>
+            </div>
+            <div class="center-peg"></div>
+        </div>
+
+        <button class="spin-btn" id="spinBtn">SPIN IT! ✨</button>
+    </div>
+
+    <!-- Surprise Modal -->
+    <div class="modal-overlay" id="surpriseModal">
+        <div class="modal-content" id="modalContent">
+            <img src="assets/bears_cheering.png" alt="Happy Bears" class="animated-bear" id="animatedBear">
+            <h2 class="modal-title" id="surpriseTitle">Surprise!</h2>
+            <p class="modal-text" id="surpriseText">Content goes here.</p>
+            <button class="close-btn" id="closeSurpriseModal">Yay! 💕</button>
+            <img src="assets/waving_bear.png" class="floating-bear" alt="Bear">
+        </div>
+    </div>
+
+    <script src="wheel.js"></script>
+    <script src="effects.js"></script>
+</body>
+
+</html>

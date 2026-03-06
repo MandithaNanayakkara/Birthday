@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Surprise | Happy Birthday Rachi!</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body {
+            background: #0f0c29;
+            /* Dark background to make fireworks pop */
+            color: #fff;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            position: relative;
+        }
+
+        .starry-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        /* Twinkling stars effect */
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle linear infinite;
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+        }
+
+        .final-content {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 50px 40px;
+            border-radius: 30px;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: scale(0.8);
+            animation: cinematicAppear 3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            animation-delay: 1s;
+        }
+
+        @keyframes cinematicAppear {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .final-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            color: #ffe0e9;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 181, 167, 0.6);
+            letter-spacing: 2px;
+        }
+
+        .final-text {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            color: #fff0f5;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .final-text strong {
+            font-weight: 600;
+            color: #e1b382;
+        }
+
+        .dancing-bears-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            align-items: flex-end;
+        }
+
+        .dancing-bear {
+            width: 120px;
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
+        }
+
+        .bear-dance-1 {
+            animation: dance1 1.5s infinite alternate ease-in-out;
+        }
+
+        .bear-dance-2 {
+            width: 150px;
+            animation: dance2 2s infinite alternate ease-in-out;
+        }
+
+        .bear-dance-3 {
+            animation: dance3 1.7s infinite alternate ease-in-out;
+        }
+
+        @keyframes dance1 {
+            0% {
+                transform: translateY(0) rotate(-5deg);
+            }
+
+            100% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+
+        @keyframes dance2 {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                transform: translateY(-30px) scale(1.1);
+            }
+        }
+
+        @keyframes dance3 {
+            0% {
+                transform: translateY(0) rotate(5deg) scaleX(-1);
+            }
+
+            100% {
+                transform: translateY(-20px) rotate(-10deg) scaleX(-1);
+            }
+        }
+
+        .firework {
+            position: absolute;
+            background: transparent;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 5;
+        }
+    </style>
+    <script src="countdown.js"></script>
+</head>
+
+<body>
+    <div class="starry-bg" id="starryBg"></div>
+
+    <div class="final-content">
+        <h1 class="final-title">🎂 Happy Birthday Rachi ❤️</h1>
+        <p class="final-text">
+            Thank you for being the cutest, sweetest, and most amazing person.
+        </p>
+        <p class="final-text" style="font-size: 1.2rem; font-style: italic; opacity: 0.9;">
+            I hope this little bear world made you smile today 🧸
+        </p>
+
+        <div class="dancing-bears-container">
+            <img src="assets/bear_1.png" alt="Bear 1" class="dancing-bear bear-dance-1">
+            <img src="assets/bears_cheering.png" alt="Cheering Bears" class="dancing-bear bear-dance-2">
+            <img src="assets/bear_3.png" alt="Bear 3" class="dancing-bear bear-dance-3">
+        </div>
+    </div>
+
+    <script src="final.js"></script>
+    <script src="effects.js"></script>
+</body>
+
+</html>
