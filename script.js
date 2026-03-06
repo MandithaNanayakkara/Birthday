@@ -20,7 +20,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const musicToggleBtn = document.getElementById('musicToggleBtn');
     let isMusicPlaying = false;
 
+    // Check if we should skip intro (came back from a game)
+    if (window.location.hash === '#forest') {
+        welcomeScreen.style.display = 'none';
+        welcomeScreen.classList.add('hidden');
+        cakeScreen.style.display = 'none';
+        cakeScreen.classList.add('hidden');
+
+        // Start background music if possible
+        if (bgMusic) {
+            bgMusic.volume = 0.5;
+            // Attempt autoplay, might be blocked by browser until interaction
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                if (musicToggleBtn) musicToggleBtn.classList.add('active'); // Fade in toggle button
+            }).catch(e => console.log('Audio autoplay blocked on returning to forest:', e));
+        }
+    }
+
     enterBtn.addEventListener('click', () => {
+        const passwordInput = document.getElementById('passwordInput');
+        const passwordError = document.getElementById('passwordError');
+
+        if (passwordInput && passwordInput.value !== 'Boomba') {
+            passwordError.style.display = 'block';
+            passwordInput.style.transform = 'translateX(-5px)';
+            setTimeout(() => passwordInput.style.transform = 'translateX(5px)', 100);
+            setTimeout(() => passwordInput.style.transform = 'translateX(0)', 200);
+            return;
+        }
+
+        if (passwordError) passwordError.style.display = 'none';
+
         welcomeScreen.classList.add('hidden');
 
         // Start background music
@@ -261,15 +292,63 @@ document.addEventListener('DOMContentLoaded', () => {
     secrets.forEach(secret => {
         secret.addEventListener('click', (e) => {
             e.stopPropagation(); // prevent background click triggering twice
-            showSecretToast();
+
+            if (secret.classList.contains('secret-moon')) {
+                document.body.classList.toggle('night-theme');
+            } else {
+                showSecretToast();
+            }
 
             // tiny animation for the secret itself
             secret.style.transform = 'scale(1.5) rotate(360deg)';
             setTimeout(() => {
                 secret.style.transform = '';
             }, 500);
+
+            // If it is the tiny bear, open Boomba's message overlay
+            if (secret.classList.contains('secret-tiny-bear')) {
+                const boombaOverlay = document.getElementById('boombaMessageOverlay');
+                if (boombaOverlay) {
+                    setTimeout(() => {
+                        boombaOverlay.classList.add('active');
+                        confetti({
+                            particleCount: 200,
+                            spread: 120,
+                            origin: { y: 0.6 },
+                            colors: ['#ffb6c1', '#d17a8e', '#ffffff']
+                        });
+                    }, 500); // show after animation
+                }
+            }
         });
     });
+
+    const closeBoombaBtn = document.getElementById('closeBoombaMessageBtn');
+    if (closeBoombaBtn) {
+        closeBoombaBtn.addEventListener('click', () => {
+            document.getElementById('boombaMessageOverlay').classList.remove('active');
+        });
+    }
+
+    // Move tiny bear around periodically to pop up in different places
+    const tinyBear = document.querySelector('.secret-tiny-bear');
+    if (tinyBear) {
+        setInterval(() => {
+            const randomX = Math.floor(Math.random() * 80) + 10; // Between 10% and 90%
+            const randomY = Math.floor(Math.random() * 70) + 15; // Between 15% and 85%
+
+            // Override default styling specifically for this effect
+            tinyBear.style.bottom = 'auto';
+            tinyBear.style.top = randomY + '%';
+            tinyBear.style.left = randomX + '%';
+
+            // Add a little pop effect when moving
+            tinyBear.style.transform = 'scale(0)';
+            setTimeout(() => {
+                tinyBear.style.transform = 'scale(1)';
+            }, 500); // wait for move transition
+        }, 4000); // Move every 4 seconds
+    }
 
     if (mainPlayground) {
         mainPlayground.addEventListener('click', (e) => {
