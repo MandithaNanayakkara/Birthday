@@ -12,6 +12,11 @@
 
     const now = new Date().getTime();
 
+    // Check if the user has unlocked the timer via the secret bypass
+    if (sessionStorage.getItem('bypassTimer') === 'true') {
+        return; // Let them through!
+    }
+
     if (now < targetDate) {
         // Halt parsing & hide everything immediately so there is ZERO flash of the actual website
         document.write(`
@@ -39,6 +44,7 @@
                     margin-bottom: 20px;
                     animation: floatUp 2s infinite alternate ease-in-out;
                     filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+                    cursor: pointer;
                 }
                 .locked-title {
                     font-size: 3.5rem;
@@ -72,12 +78,25 @@
             const overlay = document.createElement('div');
             overlay.id = 'countdownOverlay';
             overlay.innerHTML = `
-                <img src="assets/bear_cake.png" alt="Bear Waiting" class="locked-bear">
+                <img src="assets/bear_cake.png" alt="Bear Waiting" class="locked-bear" id="secretUnlockBear" title="Waiting for a birthday...">
                 <h1 class="locked-title">No peeking, Rachi! 🙈</h1>
                 <p class="locked-desc">The forest bears are still preparing your ultimate birthday surprises. Come back when the timer reaches zero!</p>
                 <div class="timer-box" id="countdownTimer">Loading...</div>
             `;
             document.body.appendChild(overlay);
+
+            // Secret Unlock Feature
+            let clickCount = 0;
+            const secretBear = document.getElementById('secretUnlockBear');
+            if (secretBear) {
+                secretBear.addEventListener('click', () => {
+                    clickCount++;
+                    if (clickCount >= 5) {
+                        sessionStorage.setItem('bypassTimer', 'true');
+                        location.reload();
+                    }
+                });
+            }
 
             // Update timer every second
             const timerInterval = setInterval(() => {
