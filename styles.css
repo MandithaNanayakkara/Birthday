@@ -170,14 +170,29 @@ body {
 }
 
 .enter-btn {
-    font-size: 1.2rem;
-    padding: 15px 40px;
-    background: #e69ab0;
-    box-shadow: 0 10px 20px rgba(230, 154, 176, 0.4);
+    font-size: 1.25rem;
+    padding: 16px 45px;
+    background: linear-gradient(135deg, #f78da7, #d17a8e);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(209, 122, 142, 0.4);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    letter-spacing: 0.5px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .enter-btn:hover {
-    background: #d17a8e;
+    background: linear-gradient(135deg, #d17a8e, #b86578);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(209, 122, 142, 0.6);
+}
+
+.enter-btn:active {
+    transform: translateY(-2px) scale(0.98);
+    box-shadow: 0 5px 15px rgba(209, 122, 142, 0.4);
 }
 
 .password-input {
@@ -1130,18 +1145,17 @@ button,
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(8px);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 2000;
     opacity: 0;
-    pointer-events: none;
     transition: opacity 0.5s ease;
 }
 
 .boomba-overlay.active {
+    display: flex;
     opacity: 1;
-    pointer-events: all;
 }
 
 .boomba-message-container {
