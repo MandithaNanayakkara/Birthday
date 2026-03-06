@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let hasShownMasterModal = false;
 
     const bearImages = [
-        'assets/bear_1.png',
-        'assets/bear_2.png',
-        'assets/bear_3.png',
-        'assets/bear_4.png',
-        'assets/waving_bear.png'
+        './assets/bear_1.png',
+        './assets/bear_2.png',
+        './assets/bear_3.png',
+        './assets/bear_4.png',
+        './assets/waving_bear.png'
     ];
 
     function updateTitle() {

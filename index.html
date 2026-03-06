@@ -29,19 +29,19 @@
 
     <!-- Music Player -->
     <audio id="bgMusic" loop preload="auto">
-        <source src="assets/happy_birthday.wav" type="audio/wav">
+        <source src="./assets/happy_birthday.wav" type="audio/wav">
     </audio>
     <button id="musicToggleBtn" class="music-toggle-btn">🎵</button>
 
     <!-- Welcome Screen -->
     <div id="welcomeScreen" class="welcome-screen">
         <div class="welcome-background">
-            <img src="assets/bear_balloons.png" class="floating-balloon balloon-1" alt="Balloon">
-            <img src="assets/bear_balloons.png" class="floating-balloon balloon-2" alt="Balloon">
-            <img src="assets/bear_balloons.png" class="floating-balloon balloon-3" alt="Balloon">
+            <img src="./assets/bear_balloons.png" class="floating-balloon balloon-1" alt="Balloon">
+            <img src="./assets/bear_balloons.png" class="floating-balloon balloon-2" alt="Balloon">
+            <img src="./assets/bear_balloons.png" class="floating-balloon balloon-3" alt="Balloon">
         </div>
         <div class="welcome-content">
-            <img src="assets/waving_bear.png" alt="Waving Bear" class="waving-bear">
+            <img src="./assets/waving_bear.png" alt="Waving Bear" class="waving-bear">
             <h1 class="welcome-title">🎉 Welcome to Rachi’s Birthday World 🧸</h1>
             <p class="welcome-text">Today we celebrate the cutest human alive 💖</p>
             <p id="passwordError" class="password-error">Incorrect password, try again! 🧸</p>
@@ -53,16 +53,16 @@
     <!-- Cake Cutting Screen -->
     <div id="cakeScreen" class="welcome-screen hidden" style="display: none;">
         <div class="welcome-background">
-            <img src="assets/bear_balloons.png" class="floating-balloon balloon-1" alt="Balloon">
-            <img src="assets/bear_balloons.png" class="floating-balloon balloon-2" alt="Balloon">
+            <img src="./assets/bear_balloons.png" class="floating-balloon balloon-1" alt="Balloon">
+            <img src="./assets/bear_balloons.png" class="floating-balloon balloon-2" alt="Balloon">
         </div>
         <div class="welcome-content"
             style="max-width: 800px; display: flex; flex-direction: column; align-items: center; width: 100%; position: relative;">
-            <img src="assets/bear_cake.png" alt="Bear with Cake" class="waving-bear" id="bearCakeImg"
+            <img src="./assets/bear_cake.png" alt="Bear with Cake" class="waving-bear" id="bearCakeImg"
                 style="width: 150px; margin-bottom: 15px; transition: opacity 0.5s;">
-            <img src="assets/bears_cheering.png" id="bearsCheeringImg" alt="Bears Cheering"
+            <img src="./assets/bears_cheering.png" id="bearsCheeringImg" alt="Bears Cheering"
                 style="position: absolute; width: 200px; bottom: 0; right: -50px; opacity: 0; transition: all 1s ease-out; transform: translateY(50px); pointer-events: none;">
-            <img src="assets/bears_cheering.png" id="bearsCheeringImgLeft" alt="Bears Cheering"
+            <img src="./assets/bears_cheering.png" id="bearsCheeringImgLeft" alt="Bears Cheering"
                 style="position: absolute; width: 200px; bottom: 0; left: -50px; opacity: 0; transition: all 1s ease-out; transform: translateY(50px) scaleX(-1); pointer-events: none;">
 
             <h2 id="cakeScreenTitle" class="welcome-title"
@@ -72,8 +72,8 @@
             <div class="video-container"
                 style="max-width: 650px; margin: 0 auto 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
                 <div class="photo-slideshow" id="introSlideshow">
-                    <img src="assets/rachi_cake_1.png" alt="Rachi Cutting Cake" class="slide active">
-                    <img src="assets/rachi_cake_2.png" alt="Rachi's Wish" class="slide">
+                    <img src="./assets/rachi_cake_1.png" alt="Rachi Cutting Cake" class="slide active">
+                    <img src="./assets/rachi_cake_2.png" alt="Rachi's Wish" class="slide">
                 </div>
             </div>
 
@@ -93,46 +93,46 @@
         <!-- Secret Easter Eggs -->
         <div class="secret-element secret-moon">🌙</div>
         <div class="secret-element secret-star">⭐</div>
-        <img src="assets/waving_bear.png" class="secret-element secret-tiny-bear" alt="Tiny Bear">
+        <img src="./assets/waving_bear.png" class="secret-element secret-tiny-bear" alt="Tiny Bear">
 
         <div class="interactive-bear bear-pos-1" data-message="Happy Birthday Rachi 🧸">
-            <img src="assets/bear_1.png" alt="Bear 1">
+            <img src="./assets/bear_1.png" alt="Bear 1">
             <div class="speech-bubble">Happy Birthday Rachi 🧸</div>
         </div>
 
         <div class="interactive-bear bear-pos-2" data-message="You are the cutest hooman">
-            <img src="assets/bear_2.png" alt="Bear 2">
+            <img src="./assets/bear_2.png" alt="Bear 2">
             <div class="speech-bubble">You are the cutest hooman</div>
         </div>
 
         <div class="interactive-bear bear-pos-3" data-message="Someone loves you a lot 💖">
-            <img src="assets/bear_3.png" alt="Bear 3">
+            <img src="./assets/bear_3.png" alt="Bear 3">
             <div class="speech-bubble">Someone loves you a lot 💖</div>
         </div>
 
         <div class="interactive-bear bear-pos-4" data-message="Cake time!! 🎂">
-            <img src="assets/bear_4.png" alt="Bear 4">
+            <img src="./assets/bear_4.png" alt="Bear 4">
             <div class="speech-bubble">Cake time!! 🎂</div>
         </div>
 
         <!-- Interactive Gift Boxes -->
         <div class="interactive-box box-pos-1" data-message="You unlocked unlimited hugs 🤗">
-            <img src="assets/gift_box.png" alt="Gift Box">
+            <img src="./assets/gift_box.png" alt="Gift Box">
             <div class="speech-bubble">You unlocked unlimited hugs 🤗</div>
         </div>
 
         <div class="interactive-box box-pos-2" data-type="confetti">
-            <img src="assets/gift_box.png" alt="Gift Box">
+            <img src="./assets/gift_box.png" alt="Gift Box">
             <div class="speech-bubble">Confetti Explosion! 🎊</div>
         </div>
 
         <div class="interactive-box box-pos-3" data-message="Rachi has levelled up today 🎉">
-            <img src="assets/gift_box.png" alt="Gift Box">
+            <img src="./assets/gift_box.png" alt="Gift Box">
             <div class="speech-bubble">Rachi has levelled up today 🎉</div>
         </div>
 
         <div class="interactive-box box-pos-4" data-message="You are officially the Birthday Queen 👑">
-            <img src="assets/gift_box.png" alt="Gift Box">
+            <img src="./assets/gift_box.png" alt="Gift Box">
             <div class="speech-bubble">You are officially the Birthday Queen 👑</div>
         </div>
 
@@ -157,7 +157,7 @@
 
     <!-- Giant Bear Overlay -->
     <div id="giantBearOverlay" class="giant-bear-overlay">
-        <img src="assets/waving_bear.png" alt="Giant Bear" class="giant-bear-img">
+        <img src="./assets/waving_bear.png" alt="Giant Bear" class="giant-bear-img">
         <h2 class="giant-bear-message">I told you not to press it 😂</h2>
         <button id="closeGiantBearBtn" class="btn primary" style="margin-top: 30px; z-index: 2005;">Exit To
             Playground</button>

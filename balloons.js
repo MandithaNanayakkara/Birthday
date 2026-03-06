@@ -13,7 +13,7 @@ const container = document.getElementById('gameContainer');
 function createBalloon() {
     const balloon = document.createElement('img');
     // Using the same cute balloon image we already generated
-    balloon.src = 'assets/bear_balloons.png';
+    balloon.src = './assets/bear_balloons.png';
     balloon.className = 'floating-balloon-game';
 
     // Random horizontal position

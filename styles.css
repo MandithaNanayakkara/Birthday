@@ -289,7 +289,7 @@ section {
 
 .bear-forest {
     position: relative;
-    background: url('assets/bear_forest_bg.png') center/cover no-repeat fixed;
+    background: url('./assets/bear_forest_bg.png') center/cover no-repeat fixed;
     min-height: 100vh;
 }
 
@@ -523,7 +523,7 @@ body.night-theme .secret-star {
 /* Hero */
 .hero {
     position: relative;
-    background: url('assets/hero.png') center/cover no-repeat;
+    background: url('./assets/hero.png') center/cover no-repeat;
     height: 100vh;
     padding: 0;
 }

@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const bearCakeImg = document.getElementById('bearCakeImg');
         bearCakeImg.style.opacity = '0';
         setTimeout(() => {
-            bearCakeImg.src = 'assets/bear_cake_off.png';
+            bearCakeImg.src = './assets/bear_cake_off.png';
             bearCakeImg.style.opacity = '1';
         }, 500);
 
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const img = box.querySelector('img');
             img.style.transform = 'scale(1.2)';
             setTimeout(() => {
-                img.src = 'assets/gift_box_open.png';
+                img.src = './assets/gift_box_open.png';
                 img.style.transform = 'scale(1)';
             }, 150);
 
